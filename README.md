@@ -112,7 +112,7 @@ A canvas progress wave with a light plugin system
                 color: `${random()}, ${random()}, ${random()}`
             })
             this.update({
-                waveCharactor: {
+                waveCharacter: {
                     color: `${random()}, ${random()}, ${random()}`
                 }
             })
