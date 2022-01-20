@@ -13,7 +13,15 @@ export default {
 
         const centerPadding = configs.canvasHeight / 2
         const size = opts.fontSize || 26
-        ctx.font = size + 'px Microsoft Yahei'
+        const defalutFont = ctx.font;
+        if (defalutFont) {
+            var fontArgs = ctx.font.split(" ");
+            ctx.font = size + "px" + " " + fontArgs[fontArgs.length - 1]; /// using the last
+        }
+        else {
+            defalutFont = size + "px Microsoft Yahei";
+        }
+        ctx.font = defalutFont;
         ctx.textAlign = opts.textAlign || 'center'
         if (configs.yOffset >= 50) {
             ctx.fillStyle = '#fff'
