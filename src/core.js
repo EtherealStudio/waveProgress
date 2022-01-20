@@ -55,8 +55,22 @@ export default class WaveProgress {
             canvasHeight = Number.parseFloat(getComputedStyle(this.canvas)['height']) * 1
         }
 
-        this.canvas.width = canvasWidth
-        this.canvas.height = canvasHeight
+        // this.canvas.width = canvasWidth;
+        // this.canvas.height = canvasHeight;
+
+        // https://developer.mozilla.org/zh-CN/docs/Web/API/Window/devicePixelRatio
+        // Set actual size in memory (scaled to account for extra pixel density).
+        {
+            const scale = window.devicePixelRatio;
+            const devicePixelCanvasWidth = Math.floor(canvasWidth * scale);
+            const devicePixelCanvasHeight = Math.floor(canvasHeight * scale);
+            this.canvas.width = devicePixelCanvasWidth;
+            this.canvas.height = devicePixelCanvasHeight;
+
+            // Normalize coordinate system to use css pixels.
+            this.ctx.scale(scale, scale);
+        }
+
         const axisLength = canvasWidth
         const INITIAL_CONFIGS = {
             canvasWidth,
